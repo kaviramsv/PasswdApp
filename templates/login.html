@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron">
+<form method="POST">
+    {# This hidden_tag is a CSRF security feature. #}
+    {{ form.hidden_tag() }}
+    {{ form.username.label }} {{ form.username() }}<br>
+    <br>
+    {{ form.password.label }} {{ form.password() }}<br>
+    <br>
+    {{ form.submit() }}
+</form>
+</div>
+<br>
+ <a href="{{url_for('register')}}">Register</a>
+{% endblock %}

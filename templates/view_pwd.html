@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+{% set name, uname, pwd = item.split(',') %}
+
+<h2>{{name}}</h2>
+<div class="card" >
+  <div class="card-body">
+
+
+    <h5 class="card-title">Username:{{uname}}</h5>
+    <h5 class="card-title">Password:{{pwd}}</h5>
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+<!--<input type="button" value="Go Back From Whence You Came!" onclick="history.back(-1)" />-->
+<br>
+<a onclick="history.back(-1)" class="btn btn-primary">Back</a>
+{% endblock %}

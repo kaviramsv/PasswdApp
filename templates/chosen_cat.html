@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!--<h1>{{cat}}</h1>-->
+<div class="d-grid gap-2">
+<a class="btn btn-outline-primary btn-lg" href='#' role="#">{{cat}}</a>
+</div>
+<br> <br>
+<!--/chosen_category/{{cat}}-->
+{% for item in list_cat %}
+<div class="d-grid  col-4">
+<a class="btn btn-primary " href='/item_view/{{item}}' role="#">{{item.site_name}}</a>
+</div>
+<br>
+{% endfor %}
+
+<a onclick="history.back(-1)" class="btn btn-primary">Back</a>
+
+
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+ <h2> {{username}} is not registered !</h2>
+ <h3> Please <a href="{{url_for('register')}}">Register</a> here </h3>
+  <h3> Or login for a different user</h3>
+ <a href="{{url_for('login')}}">Login</a>
+{% endblock %}

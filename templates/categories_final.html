@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+
+<!--{% for cat in list_cat  %}-->
+
+<!--<a class="btn btn-primary" href='#' role="#">{{cat}}</a>-->
+
+<div class="d-grid gap-2">
+  {% for cat in list_cat  %}
+  <button class="btn btn-primary" type="button" href="#">{{cat}}</button>
+  {% endfor %}
+</div>
+
+<br>
+
+<br>
+
+
+
+{% endblock %}

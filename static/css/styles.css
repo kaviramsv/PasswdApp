@@ -1,0 +1,18 @@
+h1,h2,h3,h4,h5,h6,p,body{
+color: #0275d8;
+
+}
+.card{
+width:20rem;
+line-height:1.5rem;
+border: solid #0275d8;
+}
+
+.table,td,tr,th{
+color:#0275d8;
+border: 1px solid black;
+}
+
+.btn{
+line-height:1.6
+}

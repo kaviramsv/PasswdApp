@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron">
+  <h1 >Here is a list of all passwords.</h1>
+  <br></br>
+  <table style="border: 1px solid  #0275d8  ;">
+    <tr style="border: 1px solid  #0275d8  ;">
+    <th style="border: 1px solid  #0275d8 ; color: #0275d8  ;">id</th>
+     <th style="border: 1px solid  #0275d8 ; color: #0275d8 ;">category</th>
+    <th style="border: 1px solid  #0275d8  ; color: #0275d8;">name</th>
+            <th style="border: 1px solid  #0275d8  ; color: #0275d8;">username</th>
+
+        <th style="border: 1px solid  #0275d8  ; color: #0275d8;">Pwd</th>
+
+  </tr>
+
+   {% for entry in entries  %}
+     <tr>
+       <td style="border: 1px solid  #0275d8  ; color: #0275d8 ">{{entry.id}}</td>
+       <td style="border: 1px solid  #0275d8  ;color: #0275d8 ">{{entry.category}}</td>
+       <td style="border: 1px solid  #0275d8  ;color: #0275d8 ">{{entry.site_name}}</td>
+         <td style="border: 1px solid  #0275d8  ;color: #0275d8 ">{{entry.s_uname}}</td>
+       <td style="border: 1px solid  #0275d8  ;color: #0275d8 ">{{entry.s_pwd}}</td>
+
+     </tr>
+   {% endfor %}
+</table>
+
+</div>
+{% endblock %}
