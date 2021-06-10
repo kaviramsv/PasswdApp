@@ -1,6 +1,16 @@
-h1,h2,h3,h4,h5,h6,p,body{
+h2,h3,h4,h5,h6,p,body{
 color: #0275d8;
 
+}
+h2{
+
+color:#3fd482;
+}
+h1{
+text-align:center;
+color:#d0e612;
+color:#cceb34;
+color:#3fd482
 }
 .card{
 width:20rem;
@@ -12,7 +22,35 @@ border: solid #0275d8;
 color:#0275d8;
 border: 1px solid black;
 }
+.login-box{
 
-.btn{
-line-height:1.6
+color:#0275d8;
+
 }
+.box{
+padding-right:75px;
+padding-left:75px;
+
+}
+.lab{
+color:green;
+border: 1px solid black;
+}
+a.btn.btn-outline-primary.bn {
+line-height:3;
+width:125px;
+
+}
+
+a.btn.btn-primary.bn {
+margin-top:50px;
+margin-bottom:50px;
+line-height:3;
+width:160px;
+margin-right:50px;
+}
+
+.im{
+
+
+ }

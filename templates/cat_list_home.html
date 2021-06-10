@@ -2,22 +2,26 @@
 {% block content %}
 
 <h1 >Welcome {{current_user.username.capitalize()}}!!</h1>
-
+<br>
 <!--{% for cat in cats  %}-->
 <!--    { !!{cat}}-->
 <!--   {% endfor %}-->
 <!--<h2>{{cats}}</h2>-->
 
-<div class="d-grid gap-2">
+<!--<div class="d-grid gap-2">-->
 
 
-<!--   style="font-size : 20px; width: 100%; height: 100px;" -->
+<!--   " -->
 {% for cat in cats  %}
-
-<a class="btn btn-primary" href='/chosen_category/{{cat}}' role="#">{{cat}}</a>
+<!--style="font-size : 20px; width: 100%; height: 100px;-->
+<a class="btn btn-primary btn-lg bn " href='/chosen_category/{{cat}}' role="#">{{cat}}</a>
 
    {% endfor %}
-<a class="btn btn-outline-primary" href="{{url_for('add_entry')}}" role="#">Add Entry</a>
+
+<br>
+<br>
+<br>
+<a class="btn btn-outline-primary bn" href="{{url_for('add_entry')}}" role="#">Add Category</a>
 
 {% endblock %}
-</div>
+<!--</div>-->

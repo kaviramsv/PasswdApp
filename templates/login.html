@@ -1,16 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="jumbotron">
-<form method="POST">
-    {# This hidden_tag is a CSRF security feature. #}
-    {{ form.hidden_tag() }}
-    {{ form.username.label }} {{ form.username() }}<br>
-    <br>
-    {{ form.password.label }} {{ form.password() }}<br>
-    <br>
-    {{ form.submit() }}
-</form>
-</div>
-<br>
- <a href="{{url_for('register')}}">Register</a>
+<div class="row">
+    <div class="col-lg-6  login-box">
+        <form method="POST">
+        {# This hidden_tag is a CSRF security feature. #}
+        {{ form.hidden_tag() }}
+           <div class="box"><br><br>
+        {{ form.username.label }} {{ form.username(class="form-control") }}
+           </div>
+            <div class="box"><br>
+        {{ form.password.label }} {{ form.password(class="form-control") }}
+            </div>
+                <br>
+            <div class="box">
+        {{ form.submit(class="btn btn-primary")}}
+           </div>
+        </form>
+
+        <div class="box">
+            <br>
+        <a href="{{url_for('register')}}">Register</a>
+            </div>
+    </div>
+    <div class="col-lg-6">
+      <img id="gears" src="../static/images/lock.png" alt="gears-mockup">
+    </div>
+  </div>
+
+
+
+
+
+
+    </div>
 {% endblock %}
+
