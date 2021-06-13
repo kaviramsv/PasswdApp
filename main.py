@@ -121,15 +121,20 @@ def login():
 @app.route('/register',methods=['GET','POST'])
 def register():
     form = RegistrationForm()
-
     if form.validate_on_submit():
-        user = User(username=form.username.data,
+
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is not None:
+            return render_template('user_exists.html',user=user)
+
+        else:
+            user = User(username=form.username.data,
                     password=form.password.data)
 
-        db.session.add(user)
-        db.session.commit()
-        flash('Thanks for registration!')
-        return redirect(url_for('login'))
+            db.session.add(user)
+            db.session.commit()
+            flash('Thanks for registration!')
+            return redirect(url_for('login'))
 
     return render_template('register.html',form=form)
 
