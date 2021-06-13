@@ -12,11 +12,23 @@
 </head>
 <body>
     <ul class='nav'>
-        <a class="navbar-brand" href="#">Password App</a>
+        <a class="navbar-brand" href="#"><h3>Password App</h3></a>
+
+
+<!--        <a class="navbar-brand" href="#">-->
+<!--            <img  src="../static/images/gear-2.png"  width="30" height="30" class="d-inline-block align-top" alt="">-->
+<!--    <h3>Password App</h3>-->
+<!--        </a>-->
+
 
         <br>
         <br>
-
+<li class='nav-link'>
+        <a href="#">Manual</a>
+      </li>
+      <li class='nav-link'>
+        <a href='#'>About</a>
+      </li>
       {% if current_user.is_authenticated %}
       <li class='nav-link'>
         <a href="{{url_for('logout')}}">Log Out</a>

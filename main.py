@@ -66,7 +66,7 @@ class Entry(db.Model):
     id = db.Column(db.Integer,primary_key=True)
 
     category=db.Column(db.String(140),nullable=False)
-    site_name = db.Column(db.String(140), nullable=False)
+    site_name = db.Column(db.String(140), unique=True,nullable=False)
     s_uname= db.Column(db.String(140), nullable=False)
     s_pwd=db.Column(db.String(140),nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
@@ -166,6 +166,38 @@ def item_view(item):
     return render_template('view_pwd.html', item=item)
 
 
+
+@app.route('/del_entry/<site_name>/<uname>/<pwd>',methods=['GET','POST'])
+@login_required
+def del_entry(site_name,uname,pwd):
+        print((uname))
+        print((site_name))
+        print((pwd))
+        print(current_user.id)
+
+        sn= site_name.replace(" ", "")
+        un=uname.replace(" ", "")
+        pw=pwd.replace(" ", "")
+
+        entry_to_be_del = Entry.query.filter_by(user_id=current_user.id,site_name=sn,s_uname=un,s_pwd=pw).first()
+        print(entry_to_be_del)
+
+
+        if entry_to_be_del is not None:
+            db.session.delete(entry_to_be_del)
+            db.session.commit()
+            flash('Entry has been deleted')
+            return redirect(url_for('list_categories'))
+
+
+        # else:
+        #     return render_template('/invalid.html',id=id)
+
+
+        item=site_name+", "+uname+", "+pwd
+        return render_template('view_pwd.html',item=item)
+
+
 # @app.route('/item_view/<item>')
 # @login_required
 # def item_view(item):
@@ -186,7 +218,7 @@ def add_entry():
                             )
         db.session.add(pwd_table_entry)
         db.session.commit()
-        return redirect(url_for("list_entries"))
+        return redirect(url_for("list_categories"))
     return render_template('add_entries.html', form=form)
 
 # @app.route('/cat_list/<cat>',methods=['GET','POST'])

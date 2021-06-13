@@ -12,6 +12,10 @@ color:#d0e612;
 color:#cceb34;
 color:#3fd482
 }
+
+body{
+
+}
 .card{
 width:20rem;
 line-height:1.5rem;
@@ -48,6 +52,7 @@ margin-bottom:50px;
 line-height:3;
 width:160px;
 margin-right:50px;
+
 }
 
 .im{
