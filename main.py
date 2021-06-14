@@ -2,7 +2,7 @@ from flask import Flask,Flask, render_template,redirect,url_for
 from flask import render_template,url_for,flash,redirect,request,Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
 
-from forms import RegistrationForm, AddEntryForm
+from forms import RegistrationForm, AddEntryForm, UpdateEntryForm, AddtoCat
 from models import db
 from models import User, Entry
 from forms import RegistrationForm,LoginForm,UpdateUserForm
@@ -79,7 +79,7 @@ class Entry(db.Model):
         self.user_id = user_id
 
     def __repr__(self):
-        return f"   {self.site_name}   , {self.s_uname}  ,  {self.s_pwd}     "
+        return f" {self.id} , {self.category} , {self.site_name}   , {self.s_uname}  ,  {self.s_pwd}     "
 
 
 
@@ -160,9 +160,11 @@ def list_categories():
 def chosen_category(val):
     # cats= Entry.query.filter_by(user_id=current_user.id,category=form)
     # cats=db.session.query(Entry.category.distinct()).filter_by(user_id=current_user.id).all()
-
-    list_cat = Entry.query.filter_by(user_id=current_user.id, category=val)
-
+    print(val)
+    val1 = val.replace(" ", "")
+    print(val1)
+    list_cat = Entry.query.filter_by(user_id=current_user.id, category=val1)
+    print(list_cat)
     return render_template('chosen_cat.html', cat=val,list_cat=list_cat)
 #
 @app.route('/item_view/<item>')
@@ -172,9 +174,9 @@ def item_view(item):
 
 
 
-@app.route('/del_entry/<site_name>/<uname>/<pwd>',methods=['GET','POST'])
+@app.route('/del_entry/<int:id>/<cat>/<site_name>/<uname>/<pwd>',methods=['GET','POST'])
 @login_required
-def del_entry(site_name,uname,pwd):
+def del_entry(id,cat,site_name,uname,pwd):
         print((uname))
         print((site_name))
         print((pwd))
@@ -184,9 +186,10 @@ def del_entry(site_name,uname,pwd):
         un=uname.replace(" ", "")
         pw=pwd.replace(" ", "")
 
-        entry_to_be_del = Entry.query.filter_by(user_id=current_user.id,site_name=sn,s_uname=un,s_pwd=pw).first()
+        # entry_to_be_del = Entry.query.filter_by(user_id=current_user.id,site_name=sn,s_uname=un,s_pwd=pw).first()
+        # print(entry_to_be_del)
+        entry_to_be_del = Entry.query.filter_by(user_id=current_user.id,id=id).first()
         print(entry_to_be_del)
-
 
         if entry_to_be_del is not None:
             db.session.delete(entry_to_be_del)
@@ -199,15 +202,10 @@ def del_entry(site_name,uname,pwd):
         #     return render_template('/invalid.html',id=id)
 
 
-        item=site_name+", "+uname+", "+pwd
+        item=id+", "+cat+", "+site_name+", "+uname+", "+pwd
         return render_template('view_pwd.html',item=item)
 
 
-# @app.route('/item_view/<item>')
-# @login_required
-# def item_view(item):
-#     site_name=request.args.get('username')
-#     return render_template('view_pwd.html', site_name=site_name)
 
 
 @app.route('/add_entry',methods=['GET','POST'])
@@ -225,33 +223,70 @@ def add_entry():
         db.session.commit()
         return redirect(url_for("list_categories"))
     return render_template('add_entries.html', form=form)
+# ==================================================================================
 
-# @app.route('/cat_list/<cat>',methods=['GET','POST'])
-# @login_required
-# def cat_list(cat):
-#
-#         list_cat= Entry.query.filter_by(user_id=current_user.id,category=cat)
-#
-#
-#         return render_template('categories_final.html',list_cat=list_cat)
+@app.route('/add_to_category/<cat>',methods=['GET','POST'])
+@login_required
+def add_to_category(cat):
+    form = AddtoCat()
+    if form.validate_on_submit():
+        pwd_table_entry= Entry(category=cat,
+                    site_name=form.sitename.data,
+                    s_uname=form.u_name.data,
+                    s_pwd=form.u_pwd.data,
+                    user_id=current_user.id
+                               )
+
+        db.session.add(pwd_table_entry)
+        db.session.commit()
+        # return render_template('chosen_cat.html', cat=val, list_cat=list_cat)
+        print(f"cat is {cat}")
+        return redirect(url_for('chosen_category',val=cat))
+
+    return render_template('add_to_category.html',form=form, cat=cat)
+
+
+# ===========================================================================update info form
+@app.route('/upd_entry/<int:id>/<cat>/<site_name>/<uname>/<pwd>',methods=['GET','POST'])
+@login_required
+def upd_entry(id,cat,site_name,uname,pwd):
+        print((uname))
+        print((site_name))
+        print((pwd))
+        print(current_user.id)
+
+        sn= site_name.replace(" ", "")
+        un=uname.replace(" ", "")
+        pw=pwd.replace(" ", "")
+
+        entry_to_be_upd = Entry.query.filter_by(user_id=current_user.id,id=id).first()
+        print(entry_to_be_upd)
+
+        form = UpdateEntryForm()
+        if form.validate_on_submit() :
+            entry_to_be_upd.s_uname=form.u_name.data
+            entry_to_be_upd.s_pwd=form.u_pwd.data
+            db.session.commit()
+            item = str(id)+", "+cat+", "+site_name + ", " + form.u_name.data+ ", " + form.u_pwd.data
+            return render_template('suc_upd.html', item=item)
+
+        # else:
+        #     return render_template('/invalid.html',id=id)
+
+        item =str(id)+", "+cat+", "+ site_name + ", " + uname + ", " + pwd
+        return render_template('upd_entries.html',form=form,site_name=site_name,item=item)
+
+# =============================================================================
 
 
 
-#
-#
+
 # # logout
 @app.route("/logout")
 def logout():
     logout_user()
     return redirect(url_for("login"))
 
-#
-# # account (update UserForm)
-# @app.route("/redirect")
-# def redirect_url(default='index'):
-#         return request.args.get('next') or \
-#                request.referrer or \
-#                url_for(default)
 
 @app.route('/users_data')
 @login_required
@@ -259,39 +294,6 @@ def users_list():
     users=User.query.all()
 
     return render_template('list.html',users=users)
-
-#
-# @users.route('/account',methods=['GET','POST'])
-# @login_required
-# def account():
-#
-#     form = UpdateUserForm()
-#     if form.validate_on_submit():
-#
-#         if form.picture.data:
-#             username = current_user.username
-#             pic = add_profile_pic(form.picture.data,username)
-#             current_user.profile_image = pic
-#
-#         current_user.username = form.username.data
-#         current_user.email = form.email.data
-#         db.session.commit()
-#         flash('User Account Updated!')
-#         return redirect(url_for('users.account'))
-#
-#     elif request.method == "GET":
-#         form.username.data = current_user.username
-#         form.email.data = current_user.email
-#
-#     profile_image = url_for('static',filename='profile_pics/'+current_user.profile_image)
-#     return render_template('account.html',profile_image=profile_image,form=form)
-
-
-
-
-
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)

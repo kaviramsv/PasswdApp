@@ -2,7 +2,7 @@
 {% block content %}
 
 
-{% set name, uname, pwd = item.split(',') %}
+{% set id,cat, name, uname, pwd = item.split(',') %}
 
 <h2>{{name}}</h2>
 <div class="card" >
@@ -11,8 +11,8 @@
      <br>
     <h5 class="card-title">Username:{{uname}}</h5>
     <h5 class="card-title">Password:{{pwd}}</h5><br>
-<!--    <a href="{{url_for('del_entry',site_name=name,uname=uname,pwd=pwd)}}" class="card-link">Delete</a>-->
-    <a href="#" class="card-link">Update</a>
+
+    <a href="{{url_for('upd_entry',id=id,cat=cat,site_name=name,uname=uname,pwd=pwd)}}" class="card-link">Update</a>
 
 <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
    <!-- Button trigger modal  for delete -->
@@ -33,7 +33,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-        <form action="{{url_for('del_entry',site_name=name,uname=uname,pwd=pwd)}}" method="POST">
+        <form action="{{url_for('del_entry',id=id,cat=cat,site_name=name,uname=uname,pwd=pwd)}}" method="POST">
                     <input type="submit" value="Delete" class="btn btn-danger">
                   </form>
 
@@ -53,5 +53,9 @@
 <!--div card-->
 <!--<input type="button" value="Go Back From Whence You Came!" onclick="history.back(-1)" />-->
 <br>
-<a onclick="history.back(-1)" class="btn btn-primary">Back</a>
+
+<a class="btn btn-primary btn-lg bn" href='/chosen_category/{{cat}}'  role="#">back</a>
+
+
+<!--<a onclick="history.back(-1)" class="btn btn-primary">Back</a>-->
 {% endblock %}

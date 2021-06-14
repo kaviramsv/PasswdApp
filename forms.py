@@ -47,3 +47,15 @@ class AddEntryForm(FlaskForm):
     u_name = StringField('username',validators=[DataRequired()])
     u_pwd = StringField('password', validators=[DataRequired()])
     submit = SubmitField("Post")
+
+class AddtoCat(FlaskForm):
+
+    sitename = StringField('Name',validators=[DataRequired()])
+    u_name = StringField('username',validators=[DataRequired()])
+    u_pwd = StringField('password', validators=[DataRequired()])
+    submit = SubmitField("Post")
+
+class UpdateEntryForm(FlaskForm):
+    u_name = StringField('username', validators=[DataRequired()])
+    u_pwd = StringField('password', validators=[DataRequired()])
+    submit = SubmitField("Post")

@@ -16,7 +16,8 @@
 <!--<br>-->
 {% endfor %}
 <br>
-<a onclick="history.back(-1)" class="btn btn-outline-primary bn">Back</a>
+<a class="btn btn-outline-primary bn" href='/list_categories'  role="#">back</a>
+<!--<a onclick="history.back(-1)" class="btn btn-outline-primary bn">Back</a>-->
 
-<a class="btn btn-outline-primary bn " href='#' role="#">add {{cat}}</a>
+<a class="btn btn-outline-primary bn " href='/add_to_category/{{cat}}'  role="#">add {{cat}}</a>
 {% endblock %}
