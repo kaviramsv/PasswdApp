@@ -31,6 +31,9 @@ border: 1px solid black;
 color:#0275d8;
 
 }
+.entry-box{
+width:40%;
+}
 .box{
 padding-right:75px;
 padding-left:75px;

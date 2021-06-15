@@ -152,7 +152,9 @@ def list_entries():
 def list_categories():
     # cats= Entry.query.filter_by(user_id=current_user.id,category=form)
     rows=db.session.query(Entry.category.distinct()).filter_by(user_id=current_user.id).all()
+    print(f"rows : {rows}")
     cats = [i[0] for i in rows]
+    print(cats)
     return render_template('cat_list_home.html', cats=cats)
 
 @app.route('/chosen_category/<val>')
@@ -165,7 +167,7 @@ def chosen_category(val):
     print(val1)
     list_cat = Entry.query.filter_by(user_id=current_user.id, category=val1)
     print(list_cat)
-    return render_template('chosen_cat.html', cat=val,list_cat=list_cat)
+    return render_template('chosen_cat.html', cat=val1,list_cat=list_cat)
 #
 @app.route('/item_view/<item>')
 @login_required
@@ -213,10 +215,14 @@ def del_entry(id,cat,site_name,uname,pwd):
 def add_entry():
     form = AddEntryForm()
     if form.validate_on_submit():
-        pwd_table_entry= Entry(category=form.category.data,
-                    site_name=form.sitename.data,
-                    s_uname=form.u_name.data,
-                    s_pwd=form.u_pwd.data,
+        cat=form.category.data.replace(" ", "")
+        sit=form.sitename.data.replace(" ", "")
+        nam=form.u_name.data.replace(" ", "")
+        pwd=form.u_pwd.data.replace(" ", "")
+        pwd_table_entry= Entry(category=cat,
+                    site_name=sit,
+                    s_uname=nam,
+                    s_pwd=pwd,
                     user_id=current_user.id
                             )
         db.session.add(pwd_table_entry)
@@ -230,10 +236,14 @@ def add_entry():
 def add_to_category(cat):
     form = AddtoCat()
     if form.validate_on_submit():
+        cat = cat.replace(" ", "")
+        sit = form.sitename.data.replace(" ", "")
+        nam = form.u_name.data.replace(" ", "")
+        pwd = form.u_pwd.data.replace(" ", "")
         pwd_table_entry= Entry(category=cat,
-                    site_name=form.sitename.data,
-                    s_uname=form.u_name.data,
-                    s_pwd=form.u_pwd.data,
+                    site_name=sit,
+                    s_uname=nam,
+                    s_pwd=pwd,
                     user_id=current_user.id
                                )
 

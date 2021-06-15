@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Add Entry for user:{{current_user.username.capitalize()}}</h1>
+  <h1>Add Entry for User:{{current_user.username.capitalize()}}</h1>
    <br>
-
+<div class="login-box entry-box">
 <form method="POST">
     {# This hidden_tag is a CSRF security feature. #}
     {{ form.hidden_tag() }}
-    {{ form.category.label   }} {{ form.category() }}<br><br>
-    {{ form.sitename.label }} {{ form.sitename() }}<br><br>
-    {{ form.u_name.label }} {{ form.u_name() }}<br><br>
-    {{ form.u_pwd.label }} {{ form.u_pwd() }}<br><br>
-    {{ form.submit() }}
+    {{ form.category.label   }} {{ form.category(class="form-control") }}<br>
+    {{ form.sitename.label }} {{ form.sitename(class="form-control") }}<br>
+    {{ form.u_name.label }} {{ form.u_name(class="form-control") }}<br>
+    {{ form.u_pwd.label }} {{ form.u_pwd(class="form-control") }}<br>
+    {{ form.submit(class="btn btn-primary") }}
 </form>
-
+</div>
 {% endblock %}

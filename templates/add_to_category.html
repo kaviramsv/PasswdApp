@@ -2,15 +2,14 @@
 {% block content %}
   <h1>Add to {{cat}}</h1>
    <br>
-
+<div class="login-box entry-box">
 <form method="POST">
     {# This hidden_tag is a CSRF security feature. #}
     {{ form.hidden_tag() }}
-
-    {{ form.sitename.label }} {{ form.sitename() }}<br><br>
-    {{ form.u_name.label }} {{ form.u_name() }}<br><br>
-    {{ form.u_pwd.label }} {{ form.u_pwd() }}<br><br>
-    {{ form.submit() }}
+    {{ form.sitename.label }} {{ form.sitename(class="form-control") }}<br>
+    {{ form.u_name.label }} {{ form.u_name(class="form-control") }}<br>
+    {{ form.u_pwd.label }} {{ form.u_pwd(class="form-control") }}<br>
+    {{ form.submit(class="btn btn-primary") }}
 </form>
-
+</div>
 {% endblock %}
