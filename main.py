@@ -284,6 +284,8 @@ def upd_entry(id,cat,site_name,uname,pwd):
         #     return render_template('/invalid.html',id=id)
 
         item =str(id)+", "+cat+", "+ site_name + ", " + uname + ", " + pwd
+        form.u_name.data=uname
+        form.u_pwd.data=pwd
         return render_template('upd_entries.html',form=form,site_name=site_name,item=item)
 
 # =============================================================================

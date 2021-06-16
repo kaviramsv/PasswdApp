@@ -2,7 +2,7 @@
 {% block content %}
 <div>
 <!--   <img  src="../static/images/gear-2.png" alt="gears-2">-->
-<h1 >Welcome {{current_user.username.capitalize()}}!!</h1>
+<h1 style="text-align:left"  >Welcome {{current_user.username.capitalize()}}!!</h1>
    </div>
 <br>
 <!--{% for cat in cats  %}-->
@@ -23,7 +23,7 @@
 <br>
 <br>
 <br>
-<!--<a class="btn btn-outline-primary bn" href="{{url_for('add_entry')}}" role="#">Add Category</a>-->
+<a class="btn btn-danger " href="{{url_for('add_entry')}}" role="#">Add Entry</a>
 
 {% endblock %}
 <!--</div>-->

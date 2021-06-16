@@ -4,7 +4,7 @@
 
 {% set id,cat, name, uname, pwd = item.split(',') %}
 
-<h2>{{name}}</h2>
+<h2 style=" color:#3fd482;">{{name}}</h2>
 <div class="card" >
   <div class="card-body">
 
@@ -16,7 +16,7 @@
 
 <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
    <!-- Button trigger modal  for delete -->
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Delete
 </button>
 
@@ -54,7 +54,7 @@
 <!--<input type="button" value="Go Back From Whence You Came!" onclick="history.back(-1)" />-->
 <br>
 
-<a class="btn btn-primary btn-lg bn" href='/chosen_category/{{cat}}'  role="#">back</a>
+<a class="btn btn-danger " href='/chosen_category/{{cat}}'  role="#">back</a>
 
 
 <!--<a onclick="history.back(-1)" class="btn btn-primary">Back</a>-->

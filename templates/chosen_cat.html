@@ -6,7 +6,7 @@
 <!--<a class="btn btn-outline-primary btn-lg" href='#' role="#">{{cat}}</a>-->
 <!--</div>-->
 
-<h1>{{cat.capitalize()}}</h1>
+<h1 style="text-align:left">Category : {{cat.capitalize()}}</h1>
 
 <!--/chosen_category/{{cat}}-->
 {% for item in list_cat %}
@@ -16,8 +16,8 @@
 <!--<br>-->
 {% endfor %}
 <br>
-<a class="btn btn-outline-primary bn" href='/list_categories'  role="#">back</a>
+<a class="btn btn-danger " href='/list_categories'  role="#">back</a>
 <!--<a onclick="history.back(-1)" class="btn btn-outline-primary bn">Back</a>-->
 
-<a class="btn btn-outline-primary bn " href='/add_to_category/{{cat}}'  role="#">add {{cat}}</a>
+<a class="btn btn-outline-primary " href='/add_to_category/{{cat}}'  role="#">add {{cat}}</a>
 {% endblock %}

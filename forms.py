@@ -43,7 +43,7 @@ class UpdateUserForm(FlaskForm):
 
 class AddEntryForm(FlaskForm):
     category = StringField('Category',validators=[DataRequired()])
-    sitename = StringField('Name',validators=[DataRequired('The new category should have a minimum single entry! ')])
+    sitename = StringField('Name',validators=[DataRequired(message='The new category should have a minimum single entry! ')])
     u_name = StringField('username',validators=[DataRequired()])
     u_pwd = StringField('password', validators=[DataRequired()])
     submit = SubmitField("Post")

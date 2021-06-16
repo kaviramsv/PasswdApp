@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Add Entry for user:{{current_user.username.capitalize()}}</h1>
+
+
+    <h1 style=" color:#3fd482;">Update Entry for {{site_name}}</h1>
    <br>
 
-<form method="POST">
+
+<div class="login-box entry-box">
+
+<form method="POST" style="width:30% ; color:blue">
     {# This hidden_tag is a CSRF security feature. #}
     {{ form.hidden_tag() }}
 
-    {{ form.u_name.label }} {{ form.u_name() }}<br><br>
-    {{ form.u_pwd.label }} {{ form.u_pwd() }}<br><br>
-    {{ form.submit() }}
+    {{ form.u_name.label }} {{ form.u_name(class="form-control") }}<br>
+    {{ form.u_pwd.label }} {{ form.u_pwd(class="form-control") }}<br>
+    {{ form.submit(class="btn btn-primary") }} <a class="btn btn-danger bn" href='/item_view/{{item}}' role="#">Back</a>
 </form>
+    <br>
 
+
+</div>
 {% endblock %}
